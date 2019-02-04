@@ -1,15 +1,15 @@
 
 1. `composer create-project laravel/laravel photoshow`
 2. Make controllers
-2.1 `php artisan make:controller AlbumsController`
-2.2 `php artisan make:controller PhotoController`
+  1. `php artisan make:controller AlbumsController`
+  2. `php artisan make:controller PhotoController`
 3. Make models
-3.1 `php artisan make:model Album -m`
-3.2 `php artisan make:model Photo -m`
+  1. `php artisan make:model Album -m`
+  2. `php artisan make:model Photo -m`
 4. Setup databases
-4.1 update db information in `.env`
-4.2 add table fields for model in `migrations/date_create_table.php` by using `$table->type('field_name')`
-4.3 Get around laravel migration bug by doing:
+  1. update db information in `.env`
+  2. add table fields for model in `migrations/date_create_table.php` by using `$table->type('field_name')`
+  3. Get around laravel migration bug by doing:
 ```PHP
 // AppServiceProvider.php
 use Illuminate\Support\Facades\Schema;
@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Schema;
 // in boot function
 Schema::defaultStringLength(191);
 ```
-4.4 `php artisan migrate` to create the tables
+  4. `php artisan migrate` to create the tables
+
 5. Create blade templates in resources folder, in controllers use `return view('albums.index');` to show the views.
-5.1 Use `[LaravelCollective/TML](https://laravelcollective.com/docs/master/html)` to build custom component for code reuse
-5.1.1 `composer require "laravelcollective/html":"^5.7.0"
+  1. Use `[LaravelCollective/TML](https://laravelcollective.com/docs/master/html)` to build custom component for code reuse
+  2. `composer require "laravelcollective/html":"^5.7.0"`
 ```PHP
 // add below to config/app.php => providers
 Collective\Html\HtmlServiceProvider::class,
@@ -29,8 +30,9 @@ Collective\Html\HtmlServiceProvider::class,
 'Form' => Collective\Html\FormFacade::class,
 'Html' => Collective\Html\HtmlFacade::class,
 ```
-* `php artisan make:provider FormServiceProvider`
-* Add `App\Providers\FormServiceProvider::class` to `config/app.php providers` array
+  * `php artisan make:provider FormServiceProvider`
+  * Add `App\Providers\FormServiceProvider::class` to `config/app.php providers` array
+
 ```PHP
 /* App/Providers/FormServiceProvider boot function */
 	Form::component('text', 'components.form.text', ['name', 'value' => null, 'attributes' => []]);
@@ -39,7 +41,9 @@ Collective\Html\HtmlServiceProvider::class,
 	Form::component('hidden', 'components.form.hidden', ['name', 'value' => null, 'attributes' => []]);
 	Form::component('file', 'components.form.file', ['name',  'attributes' => []]);
 ```
-* create `views/components/form/{text,textarea,submit,hidden,file}.blade.php`
+
+  * create `views/components/form/{text,textarea,submit,hidden,file}.blade.php`
+
 ```PHP
 {{-- text.blade.php --}}
 <label>
@@ -47,7 +51,7 @@ Collective\Html\HtmlServiceProvider::class,
   {{Form::text($name, $value, $attritutes)}}
 </label>
 ```
-* Create the form
+  * Create the form
 ```PHP
 {{-- albums/create.blade.php --}}
 @section('content')
@@ -59,8 +63,10 @@ Collective\Html\HtmlServiceProvider::class,
     {{Form::submit('submit')}}
   {!! Form::close() !!}
 @endsection
+```
 
 6. Create Routes in routes/web.php `Route::get('/', 'AlbumsController@index')`
+
 7. File upload handling with controller
 ```PHP
 /** AlbumsController.php **/
@@ -99,7 +105,7 @@ public function store(Request $request) {}
 ```
 
 8. `php artisan storage:link` to create link for file storage
-9. Set relationship betwen `album` and `photo`
+9. Set relationship between `album` and `photo`
 ```php
 /** App\Album.php **/
   protected $fillable = array('name', 'description', 'cover_image');
