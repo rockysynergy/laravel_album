@@ -46,12 +46,10 @@
   * create `views/components/form/{text,textarea,submit,hidden,file}.blade.php`
 
 		```PHP
-		/*
 		<label>
 			{{Form::label($name)}}
 			{{Form::text($name, $value, $attritutes)}}
 		</label>
-		*/
 		```
   * Create the form
 
