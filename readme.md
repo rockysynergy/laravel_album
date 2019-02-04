@@ -1,24 +1,24 @@
 
 1. `composer create-project laravel/laravel photoshow`
 2. Make controllers
-  1. `php artisan make:controller AlbumsController`
-  2. `php artisan make:controller PhotoController`
+		1. `php artisan make:controller AlbumsController`
+		2. `php artisan make:controller PhotoController`
 3. Make models
-  1. `php artisan make:model Album -m`
-  2. `php artisan make:model Photo -m`
+		1. `php artisan make:model Album -m`
+		2. `php artisan make:model Photo -m`
 4. Setup databases
-  1. update db information in `.env`
-  2. add table fields for model in `migrations/date_create_table.php` by using `$table->type('field_name')`
-  3. Get around laravel migration bug by doing:
+		1. update db information in `.env`
+		2. add table fields for model in `migrations/date_create_table.php` by using `$table->type('field_name')`
+		3. Get around laravel migration bug by doing:
 
-		```PHP
-		// AppServiceProvider.php
-		use Illuminate\Support\Facades\Schema;
-		...
-		// in boot function
-		Schema::defaultStringLength(191);
-		```
-  4. `php artisan migrate` to create the tables
+			```PHP
+			// AppServiceProvider.php
+			use Illuminate\Support\Facades\Schema;
+			...
+			// in boot function
+			Schema::defaultStringLength(191);
+			```
+	  4. `php artisan migrate` to create the tables
 
 5. Create blade templates in resources folder, in controllers use `return view('albums.index');` to show the views.
   1. Use `[LaravelCollective/TML](https://laravelcollective.com/docs/master/html)` to build custom component for code reuse
