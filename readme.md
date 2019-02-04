@@ -53,9 +53,9 @@
 		</label>
 		*/
 		```
-  * Create the form			
+  * Create the form
+
 		```PHP
-		/*
 		@section('content')
 		  <h3>Create Album</h3>
 		  {!!Form::open(['action' => 'AlbumsController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
@@ -65,7 +65,6 @@
 		    {{Form::submit('submit')}}
 		  {!! Form::close() !!}
 		@endsection
-		*/
 		```
 
 6. Create Routes in routes/web.php `Route::get('/', 'AlbumsController@index')`
