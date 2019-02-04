@@ -10,13 +10,14 @@
   1. update db information in `.env`
   2. add table fields for model in `migrations/date_create_table.php` by using `$table->type('field_name')`
   3. Get around laravel migration bug by doing:
-```PHP
-// AppServiceProvider.php
-use Illuminate\Support\Facades\Schema;
-...
-// in boot function
-Schema::defaultStringLength(191);
-```
+
+		```PHP
+		// AppServiceProvider.php
+		use Illuminate\Support\Facades\Schema;
+		...
+		// in boot function
+		Schema::defaultStringLength(191);
+		```
   4. `php artisan migrate` to create the tables
 
 5. Create blade templates in resources folder, in controllers use `return view('albums.index');` to show the views.
