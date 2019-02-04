@@ -21,7 +21,7 @@
   4. `php artisan migrate` to create the tables
 
 5. Create blade templates in resources folder, in controllers use `return view('albums.index');` to show the views.
-  1. Use `[LaravelCollective/TML](https://laravelcollective.com/docs/master/html)` to build custom component for code reuse
+  1. Use ` [LaravelCollective/HTML](https://laravelcollective.com/docs/master/html) ` to build custom component for code reuse
   2. `composer require "laravelcollective/html":"^5.7.0"`
 		```PHP
 		// add below to config/app.php => providers
@@ -33,28 +33,25 @@
 		```
   * `php artisan make:provider FormServiceProvider`
   * Add `App\Providers\FormServiceProvider::class` to `config/app.php providers` array
-
 		```PHP
 		/* App/Providers/FormServiceProvider boot function */
-			Form::component('text', 'components.form.text', ['name', 'value' => null, 'attributes' => []]);
-			Form::component('textarea', 'components.form.textarea', ['name', 'value' => null, 'attributes' => []]);
-			Form::component('submit', 'components.form.submit', ['value' => 'Submit', 'attributes' => []]);
-			Form::component('hidden', 'components.form.hidden', ['name', 'value' => null, 'attributes' => []]);
-			Form::component('file', 'components.form.file', ['name',  'attributes' => []]);
+		Form::component('text', 'components.form.text', ['name', 'value' => null, 'attributes' => []]);
+		Form::component('textarea', 'components.form.textarea', ['name', 'value' => null, 'attributes' => []]);
+		Form::component('submit', 'components.form.submit', ['value' => 'Submit', 'attributes' => []]);
+		Form::component('hidden', 'components.form.hidden', ['name', 'value' => null, 'attributes' => []]);
+		Form::component('file', 'components.form.file', ['name',  'attributes' => []]);
 		```
 
   * create `views/components/form/{text,textarea,submit,hidden,file}.blade.php`
 
 		```PHP
-		{{-- text.blade.php --}}
 		<label>
-		  {{Form::label($name)}}
-		  {{Form::text($name, $value, $attritutes)}}
+			{{Form::label($name)}}
+			{{Form::text($name, $value, $attritutes)}}
 		</label>
 		```
   * Create the form			
 		```PHP
-		{{-- albums/create.blade.php --}}
 		@section('content')
 		  <h3>Create Album</h3>
 		  {!!Form::open(['action' => 'AlbumsController@store','method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
